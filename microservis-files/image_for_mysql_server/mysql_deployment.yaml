@@ -19,13 +19,19 @@ spec:
       - name: mysql
         image: mysql:5.7
         imagePullPolicy: Always 
+        env:
+          - name: MYSQL_PASSWORD
+            value: Clarusway_1
+          - name: MYSQL_ROOT_PASSWORD
+            value: P12345p
+          - name: MYSQL_DATABASE
+            value: phonebook
         ports:
         - containerPort: 3306
         volumeMounts:
           - mountPath: /var/lib/mysql
             name: mysql-persistent-volume
-      volumes:
-        - name: mysql-persistent-volume
-          persistentVolumeClaim:
-            claimName: mysql-pw-claim
-            
+        volumes:
+          - name: mysql-persistent-volume
+            persistentVolumeClaim:
+              claimName: mysql-pw-claim
